@@ -38,7 +38,6 @@ public class Player : MonoBehaviour {
     
     // Update is called once per frame
     void Update() {
-        Debug.Log(hearts);
         var absVelX = Mathf.Abs(body2D.velocity.x);
         var absVelY = Mathf.Abs(body2D.velocity.y);
 
@@ -114,10 +113,11 @@ public class Player : MonoBehaviour {
         hearts =  new List<GameObject>();
         for (int i = 0; i < hp; i += 10)
         {
-            var newHeart = Instantiate(heart, new Vector3(280 - 2 * i, 55, 1), transform.rotation);
+            var newHeart = Instantiate(heart, transform.position, transform.rotation);
             hearts.Add(newHeart);
             newHeart.gameObject.transform.SetParent(canvas);
             newHeart.gameObject.name = "heart";
+            newHeart.transform.localPosition = new Vector3(572-(10*i), 251, 1);
             newHeart.gameObject.transform.localScale = new Vector3(1, 1, 1);
         }
     }

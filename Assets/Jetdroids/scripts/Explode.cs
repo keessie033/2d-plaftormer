@@ -45,14 +45,13 @@ public class Explode : MonoBehaviour {
                 text.text = score.ToString();
             }
             player.hp -= 10;
-            Debug.Log(player.hp);
             Destroy(heartsArray[heartsArray.Length - 1]);
             player.hearts.RemoveAt(heartsArray.Length - 1);
-            oof.Play();
+            oof.PlayOneShot(oof.GetComponent<AudioSource>().clip);
             if (player.hp == 0)
             {
                 StartCoroutine(respawn());
-                player.hp = 50;
+                player.hp = 30;
                 player.hearts.Clear();
                 player.setHearts();
             }
@@ -103,14 +102,13 @@ public class Explode : MonoBehaviour {
                 text.text = score.ToString();
             }
             player.hp -= 10;
-            Debug.Log(player.hp);
             Destroy(heartsArray[heartsArray.Length - 1]);
             player.hearts.RemoveAt(heartsArray.Length - 1);
-            oof.Play();
+            oof.PlayOneShot(oof.GetComponent<AudioSource>().clip);
             if (player.hp == 0)
             {
                 StartCoroutine(respawn());
-                player.hp = 50;
+                player.hp = 30;
                 player.hearts.Clear();
                 player.setHearts();
             }
@@ -121,7 +119,7 @@ public class Explode : MonoBehaviour {
     {
         
         onExplode();
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.7f);
         var newPlayer = Instantiate(prefab, transform.position = spawnLocation, transform.rotation);
         newPlayer.name = "Player";
         camerFollow.target = newPlayer;
